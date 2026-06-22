@@ -1,0 +1,47 @@
+name: Application Validation and Testing
+
+# 1. Trigger the pipeline on every Pull Request targeting the main branch
+on:
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  validate-and-test:
+    name: Run Lint, Tests, and Build
+    runs-on: ubuntu-latest # 2. Run on a clean Linux environment
+
+    steps:
+      # 3. Check out the project code onto the runner machine
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 4. Set up the specific language/runtime environment
+      - name: Setup Node.js Runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm' # Caches dependencies automatically for faster subsequent runs
+
+      # 5. Install the exact project dependencies safely
+      - name: Install Dependencies
+        run: npm ci
+
+      # 6. Run static analysis/linting tools
+      - name: Run Linting Check
+        run: npm run lint
+
+      # 7. Execute unit testing suites
+      - name: Run Unit Tests
+        run: npm test
+
+      # 8. Compile or build the application to generate files
+      - name: Build Application
+        run: npm run build
+
+      # 9. Save and produce downloadable build artifacts from the workflow
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build
+          path: ./dist # Adjust this path to match your app's build output folder
+
