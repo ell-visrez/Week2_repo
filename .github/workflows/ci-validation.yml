@@ -20,7 +20,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm' # Caches dependencies automatically for faster subsequent runs
+         # cache: 'npm' # Caches dependencies automatically for faster subsequent runs
+	 # WE WILL remove this cache: 'npm' command first because it is used to instruct GitHub to speed up future runs by caching packagaes (i.e. make them smaller), BUT, if there are no packages and NO package-lock.json file in the root directory to identify exactly what to cache> the runner will crash when it can;'t find this file. 
 
       # 5. Install the exact project dependencies safely
       - name: Install Dependencies
