@@ -1,1 +1,14 @@
-Description
+Description: 
+Hello! This is my sample repository for the Week 2 Deliverables of my DevOps Internship. 
+According to the checklist, this repo is created to allow for simulating execution of the following tasks: 
+Goal: Build a CI pipeline for Application Validation & Testing 
+Task: Build a sample application (Python / node.js) 
+      Build a CI workflow that achieves the following: 
+      - Checks out code
+      - Installs dependencies
+      - Runs linting
+      - Runs Unit Tests
+      Configure Workflow Status Badges
+      Upload test report secrets safely 
+
+Success Criteria: Every Pull_request should be able to automatically run tests, produce artifacts and give pass/fail status. 
